@@ -22,29 +22,9 @@
                 <div class="task-todo">
                     <div class="task-header task-color-todo">
                         <h2 class="task-header-title">TODO:</h2>
-                        <div class="task-header-count">2</div>
+                        <div id="countTodo" class="task-header-count"></div>
                     </div>
-                    <div class="task-container">
-                        <div class="task-card task-color-todo">
-                            <div class="task-card-header">
-                                <h3 class="task-card-header-title">Title</h3>
-                                <div class="task-card-header-actions">
-                                    <button>Edit</button>
-                                    <button>Delete</button>
-                                </div>
-                            </div>
-                            <div class="task-card-main">
-                                <div class="task-card-main-description">
-                                    <p>Description</p>
-                                </div>
-                                <button>></button>
-                            </div>
-                            <div class="task-card-footer">
-                                <div class="task-card-footer-user">User</div>
-                                <div class="task-card-footer-time">Time</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="containerTodo" class="task-container"></div>
                     <div class="task-footer task-color-todo">
                         <button class="task-footer-btn task-color-todo">Add todo</button>
                     </div>
@@ -52,10 +32,10 @@
                 <div class="task-todo">
                     <div class="task-header task-color-inprogress">
                         <h2 class="task-header-title">IN PROGRESS:</h2>
-                        <div class="task-header-count">1</div>
+                        <div id="countProgress" class="task-header-count"></div>
                     </div>
-                    <div class="task-container">
-                        <div class="task-card task-color-inprogress">
+                    <div id="containerProgress" class="task-container">
+                        <!-- <div class="task-card task-color-inprogress">
                             <div class="task-card-header">
                                 <h3 class="task-card-header-title">Title</h3>
                                 <div class="task-card-header-actions">
@@ -90,16 +70,16 @@
                                 <div class="task-card-footer-user">User</div>
                                 <div class="task-card-footer-time">Time</div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="task-todo">
                     <div class="task-header task-color-done">
                         <h2 class="task-header-title">DONE:</h2>
-                        <div class="task-header-count">2</div>
+                        <div id="countDone" class="task-header-count"></div>
                     </div>
-                    <div class="task-container">
-                        <div class="task-card task-color-done">
+                    <div id="containerDone" class="task-container">
+                        <!-- <div class="task-card task-color-done">
                             <div class="task-card-header">
                                 <h3 class="task-card-header-title">Title</h3>
                                 <div class="task-card-header-actions">
@@ -115,7 +95,7 @@
                                 <div class="task-card-footer-user">User</div>
                                 <div class="task-card-footer-time">Time</div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="task-footer task-color-done">
                         <button class="task-footer-btn task-color-done">Delete All</button>

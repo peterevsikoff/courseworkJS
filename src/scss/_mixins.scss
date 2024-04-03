@@ -38,17 +38,17 @@
 
 @mixin button {
   border: 1px solid $_gray;
-    cursor: pointer;
-    opacity: .7;
-    transition: .1s;
+  cursor: pointer;
+  opacity: .7;
+  transition: .1s;
 
-    &:hover {
-        opacity: 1;
-        transform: scale(1.02);
-    }
+  &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+  }
 
-    &:active {
-        transform: scale(.98);
-    }
+  &:active {
+      transform: scale(.98);
+  }
 }
   

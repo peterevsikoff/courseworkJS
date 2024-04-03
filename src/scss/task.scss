@@ -78,7 +78,12 @@
     padding: 6px;
     border-radius: 6px;
     text-transform: uppercase;
+    margin-right: 4px;
     @include button;
+
+    &:last-child {
+        margin-right: 0;
+    }
 }
 
 .task-card-main {
@@ -97,6 +102,7 @@
 }
 
 .task-card-main-description {
+    margin-right: 6px;
     @include text;
 }
 
