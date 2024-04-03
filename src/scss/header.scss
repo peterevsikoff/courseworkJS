@@ -1,0 +1,45 @@
+.header {
+    background-color: $_white;
+    padding: 20px 0;
+}
+
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    background-color: $_violet;
+    padding: 30px;
+    border-radius: 20px;
+    @include shadow;
+
+    @media (max-width: 1170px) {
+        margin: 0 -10px;
+    }
+
+    @media (max-width: 320px) {
+        padding: 15px;
+    }
+}
+
+.header-title {
+    @include h1;
+    
+    @media (max-width: 1024px) {
+        @include h2;
+    }
+
+    @media (max-width: 320px) {
+        @include h2;
+    }
+}
+
+.header-clock {
+    background-color: $_white;
+    padding: 8px 14px;
+    border-radius: 10px;
+    min-width: 80px;
+    text-align: center;
+    @include shadow;
+}

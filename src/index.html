@@ -3,9 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./scss/index.scss">
     <title>Coursework JS Trello</title>
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
 </head>
 <body>
-    <div>Trello</div>
+    <header class="header">
+        <div class="container">
+            <div class="header-wrap">
+                <h1 class="header-title">Trello</h1>
+                <div class="header-clock">--:--</div>
+            </div>
+        </div>
+    </header>
+    <section class="task">
+        <div class="container">
+            <div class="task-wrap">
+                <div class="task-todo">
+                    <div class="task-header task-color-todo">
+                        <h2 class="task-header-title">TODO:</h2>
+                        <div class="task-header-count">2</div>
+                    </div>
+                    <div class="task-container">
+                        <div class="task-card task-color-todo">
+                            <div class="task-card-header">
+                                <h3 class="task-card-header-title">Title</h3>
+                                <div class="task-card-header-actions">
+                                    <button>Edit</button>
+                                    <button>Delete</button>
+                                </div>
+                            </div>
+                            <div class="task-card-main">
+                                <div class="task-card-main-description">
+                                    <p>Description</p>
+                                </div>
+                                <button>></button>
+                            </div>
+                            <div class="task-card-footer">
+                                <div class="task-card-footer-user">User</div>
+                                <div class="task-card-footer-time">Time</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-footer task-color-todo">
+                        <button class="task-footer-btn task-color-todo">Add todo</button>
+                    </div>
+                </div>
+                <div class="task-todo">
+                    <div class="task-header task-color-inprogress">
+                        <h2 class="task-header-title">IN PROGRESS:</h2>
+                        <div class="task-header-count">1</div>
+                    </div>
+                    <div class="task-container">
+                        <div class="task-card task-color-inprogress">
+                            <div class="task-card-header">
+                                <h3 class="task-card-header-title">Title</h3>
+                                <div class="task-card-header-actions">
+                                    <button>Back</button>
+                                    <button>Complete</button>
+                                </div>
+                            </div>
+                            <div class="task-card-main">
+                                <div class="task-card-main-description">
+                                    <p>Description</p>
+                                </div>
+                            </div>
+                            <div class="task-card-footer">
+                                <div class="task-card-footer-user">User</div>
+                                <div class="task-card-footer-time">Time</div>
+                            </div>
+                        </div>
+                        <div class="task-card task-color-inprogress">
+                            <div class="task-card-header">
+                                <h3 class="task-card-header-title">Title</h3>
+                                <div class="task-card-header-actions">
+                                    <button>Back</button>
+                                    <button>Complete</button>
+                                </div>
+                            </div>
+                            <div class="task-card-main">
+                                <div class="task-card-main-description">
+                                    <p>Description</p>
+                                </div>
+                            </div>
+                            <div class="task-card-footer">
+                                <div class="task-card-footer-user">User</div>
+                                <div class="task-card-footer-time">Time</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="task-todo">
+                    <div class="task-header task-color-done">
+                        <h2 class="task-header-title">DONE:</h2>
+                        <div class="task-header-count">2</div>
+                    </div>
+                    <div class="task-container">
+                        <div class="task-card task-color-done">
+                            <div class="task-card-header">
+                                <h3 class="task-card-header-title">Title</h3>
+                                <div class="task-card-header-actions">
+                                    <button>Delete</button>
+                                </div>
+                            </div>
+                            <div class="task-card-main">
+                                <div class="task-card-main-description">
+                                    <p>Description</p>
+                                </div>
+                            </div>
+                            <div class="task-card-footer">
+                                <div class="task-card-footer-user">User</div>
+                                <div class="task-card-footer-time">Time</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-footer task-color-done">
+                        <button class="task-footer-btn task-color-done">Delete All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="./js/index.js"></script>
 </body>
 </html>

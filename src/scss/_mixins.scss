@@ -1,0 +1,54 @@
+@mixin h1 {
+  font-family: "Raleway";
+  font-weight: 600;
+  color: $_black;
+  font-size: 64px;
+}
+
+@mixin h2 {
+  font-family: "Raleway";
+  font-weight: 600;
+  color: $_black;
+  font-size: 36px;
+}
+
+@mixin h3 {
+  font-family: "Raleway";
+  font-weight: 600;
+  color: $_black;
+  font-size: 30px;
+}
+
+@mixin h4 {
+  font-family: "Raleway";
+  font-weight: 600;
+  color: $_black;
+  font-size: 24px;
+}
+
+@mixin text {
+  font-family: "Raleway";
+  color: $_black;
+  font-size: 18px;
+}
+
+@mixin shadow {
+  box-shadow: 1px 1px 2px $_gray, -1px 1px 2px $_gray;
+}
+
+@mixin button {
+  border: 1px solid $_gray;
+    cursor: pointer;
+    opacity: .7;
+    transition: .1s;
+
+    &:hover {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+
+    &:active {
+        transform: scale(.98);
+    }
+}
+  
