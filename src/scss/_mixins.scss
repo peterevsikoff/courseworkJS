@@ -42,13 +42,13 @@
   opacity: .7;
   transition: .1s;
 
-  &:hover {
-      opacity: 1;
-      transform: scale(1.02);
+  &:not(:disabled):hover {
+    opacity: 1;
+    transform: scale(1.02);
   }
 
-  &:active {
-      transform: scale(.98);
+  &:not(:disabled):active {
+    transform: scale(.98);
   }
 }
   

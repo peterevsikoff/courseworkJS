@@ -8,6 +8,7 @@
 @import "./mixins";
 @import "./header.scss";
 @import "./task.scss";
+@import "./modal.scss";
 
 * {
   margin: 0;
@@ -24,6 +25,11 @@ html {
 button {
   border: none;
   outline: none;
+}
+
+input, textarea, select {
+  outline: none;
+  border: none;
 }
 
 .container {

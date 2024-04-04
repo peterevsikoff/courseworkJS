@@ -1,6 +1,7 @@
 import { getUsers } from "./data.js";
 import { getTime } from "./clock.js";
 import { renderContainer } from "./dom.js";
+import { addOrEditTodo } from "./handlers.js";
 
 getUsers();
 
@@ -9,6 +10,9 @@ clock.textContent = getTime();
 setInterval(()=>{
     clock.textContent = getTime();
 }, 60000);
+
+const btnAddTodo = document.querySelector("#btnAddTodo");
+btnAddTodo.addEventListener("click", () => addOrEditTodo());
 
 const tasks = [
     {
