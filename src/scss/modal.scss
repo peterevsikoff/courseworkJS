@@ -116,3 +116,41 @@ body.modal-show {
 .modal-click-background {
     transform: scale(1.05) translate(-49%, -49%);
 }
+
+.modal-text-container {
+    padding: 20px;
+
+    p {
+        text-align: center;
+        @include h4;
+    }
+}
+
+.modal-window-footer-end {
+    justify-content: end !important;
+}
+
+.modal-main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 320px) {
+        display: block;
+        text-align: center;
+    }
+
+    &:first-child {
+        margin-left: 20px;
+
+        @media (max-width: 320px) {
+            margin-left: 0;
+        }
+    }
+
+    img {
+        height: 80px;
+        width: 80px;
+        
+    }
+}

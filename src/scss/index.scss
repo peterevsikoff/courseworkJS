@@ -38,3 +38,19 @@ input, textarea, select {
   padding: 0 15px;
   position: relative;
 }
+
+.scroll-custom::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+  background-color: $_gray;
+  border-radius: 9em;
+  border: 2px solid transparent;
+  background-clip: content-box;
+
+  &:hover {
+      background-color: rgba($_gray, .4);
+  }
+}

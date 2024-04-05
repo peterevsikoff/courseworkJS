@@ -45,6 +45,13 @@
 .task-container {
     padding: 10px;
     flex-grow: 1;
+    overflow-y: auto;
+    max-height: 68vh;
+
+    @media (max-width: 320px) {
+        overflow-y: hidden;
+        max-height: none;
+    }
 }
 
 .task-card {
@@ -154,4 +161,8 @@
     .task-footer-btn:active {
         background-color: $_blue-active;
     }
+}
+
+.task-card-zero {
+    text-align: center;
 }

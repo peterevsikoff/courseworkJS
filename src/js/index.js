@@ -1,55 +1,24 @@
-import { getUsers } from "./data.js";
+import { getUsers, getData } from "./data.js";
 import { getTime } from "./clock.js";
 import { renderContainer } from "./dom.js";
-import { addOrEditTodo } from "./handlers.js";
+import { addOrEditTodo, deleteAll } from "./handlers.js";
 
-getUsers();
+//getUsers();
 
 const clock = document.querySelector(".header-clock");
 clock.textContent = getTime();
-setInterval(()=>{
+setInterval(() => {
     clock.textContent = getTime();
 }, 60000);
 
+const tasks = getData("tasks");
+
 const btnAddTodo = document.querySelector("#btnAddTodo");
-btnAddTodo.addEventListener("click", () => addOrEditTodo());
+btnAddTodo.addEventListener("click", () => addOrEditTodo({}, tasks));
 
-const tasks = [
-    {
-        title: "Фильм",
-        description: "Посмотреть новый фильм Н.Михалкова",
-        user: "Иванов И.И.",
-        time: "18:23",
-        status: "TODO"
-    },
-    {
-        title: "Диван",
-        description: "Полежать на диване смотря в потолок",
-        user: "Иванов И.И.",
-        time: "21:00",
-        status: "TODO"
-    },
-    {
-        title: "Магазин",
-        description: "Сходить в магазин за продуктами",
-        user: "Иванов И.И.",
-        time: "22:00",
-        status: "PROGRESS"
-    },
-    {
-        title: "Читать",
-        description: "Прочитать следующую главу книги \"Война и мир\"",
-        user: "Иванов И.И.",
-        time: "16:00",
-        status: "DONE"
-    }
-]
+const btnDeleteAll = document.querySelector("#btnDeleteAll");
+btnDeleteAll.addEventListener("click", () => deleteAll(tasks));
 
-const todos = tasks.filter(x => x.status === "TODO");
-renderContainer("containerTodo", "countTodo", todos);
-
-const progress = tasks.filter(x => x.status === "PROGRESS");
-renderContainer("containerProgress", "countProgress", progress);
-
-const done = tasks.filter(x => x.status === "DONE");
-renderContainer("containerDone", "countDone", done);
+renderContainer("containerTodo", "countTodo", tasks, "TODO");
+renderContainer("containerProgress", "countProgress", tasks, "PROGRESS");
+renderContainer("containerDone", "countDone", tasks, "DONE");
