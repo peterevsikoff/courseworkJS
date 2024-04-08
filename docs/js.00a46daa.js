@@ -323,7 +323,77 @@ var deleteAll = exports.deleteAll = function deleteAll(data) {
 };
 },{"./data.js":"js/data.js","./dom.js":"js/dom.js","./utils.js":"js/utils.js"}],"img/triangle.svg":[function(require,module,exports) {
 module.exports = "/triangle.fe4fc6c1.svg";
-},{}],"js/dom.js":[function(require,module,exports) {
+},{}],"js/dragndrop.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.mouseDown = void 0;
+var _handlers = require("./handlers.js");
+var mouseDown = exports.mouseDown = function mouseDown(e, item, tasks) {
+  //если сработало на кнопке или на выполненной задаче, то выйти
+  if (e.target.closest("button") || e.target.closest(".task-color-done")) return;
+
+  //карточка, которую необходимо переместить
+  var eventCard = e.target.closest(".task-card");
+
+  //клонируем, чтобы оставить старую на месте
+  var card = eventCard.cloneNode(true);
+
+  //поправка на отступы, чтобы оставить под указателем мыши
+  var shiftX = e.clientX - eventCard.getBoundingClientRect().left;
+  var shiftY = e.clientY - eventCard.getBoundingClientRect().top;
+
+  //позиционируем клон
+  card.style.position = "absolute";
+  card.style.zIndex = 1000;
+  document.body.append(card);
+  eventCard.classList.toggle("card-drop");
+  var moveAt = function moveAt(pageX, pageY) {
+    card.style.left = "".concat(pageX - shiftX, "px");
+    card.style.top = "".concat(pageY - shiftY, "px");
+  };
+  var init = function init() {
+    document.removeEventListener("mousemove", onMouseMove);
+    card.remove();
+    eventCard.classList.toggle("card-drop");
+  };
+  moveAt(e.pageX, e.pageY);
+  var onMouseMove = function onMouseMove(e) {
+    moveAt(e.pageX, e.pageY);
+
+    //чтобы найти контейнер-цель для перемещения
+    card.hidden = true;
+    var container = document.elementFromPoint(e.clientX, e.clientY);
+    card.hidden = false;
+    if (!container) return;
+
+    //из todo и progress
+    if (container.closest("#containerProgress") && eventCard.classList.contains("task-color-todo")) {
+      (0, _handlers.changeStatus)(item, tasks, "PROGRESS");
+      init();
+    }
+
+    //из progress в todo
+    if (container.closest("#containerTodo") && eventCard.classList.contains("task-color-inprogress")) {
+      (0, _handlers.changeStatus)(item, tasks, "TODO");
+      init();
+    }
+    //из progress в done
+    if (container.closest("#containerDone") && !eventCard.classList.contains("task-color-todo")) {
+      (0, _handlers.changeStatus)(item, tasks, "DONE");
+      init();
+    }
+  };
+
+  //перемещаем
+  document.addEventListener("mousemove", onMouseMove);
+
+  //сняли кнопку, удалили клон и убрали подписку
+  card.addEventListener("mouseup", init);
+};
+},{"./handlers.js":"js/handlers.js"}],"js/dom.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -334,6 +404,7 @@ var _handlers = require("./handlers.js");
 var _utils = require("./utils.js");
 var _clock = require("./clock.js");
 var _triangle = _interopRequireDefault(require("../img/triangle.svg"));
+var _dragndrop = require("./dragndrop.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var createCard = function createCard(_ref, tasks) {
   var id = _ref.id,
@@ -355,6 +426,12 @@ var createCard = function createCard(_ref, tasks) {
       card.classList.add("task-color-done");
       break;
   }
+  card.addEventListener("mousedown", function (e) {
+    (0, _dragndrop.mouseDown)(e, {
+      id: id,
+      status: status
+    }, tasks);
+  });
   var cardHeader = document.createElement("div");
   cardHeader.classList.add("task-card-header");
   var cardHeaderTitle = document.createElement("h3");
@@ -381,7 +458,8 @@ var createCard = function createCard(_ref, tasks) {
   }
   var deleteBtn = document.createElement("button");
   deleteBtn.textContent = status === "TODO" || status === "DONE" ? "Delete" : "Complete";
-  deleteBtn.addEventListener("click", function () {
+  deleteBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
     status === "TODO" || status === "DONE" ? (0, _handlers.delTodo)({
       id: id,
       status: status
@@ -584,7 +662,7 @@ var createModalAlert = exports.createModalAlert = function createModalAlert(remo
   modalWindow.append(main, modalWindowFooter);
   return modal;
 };
-},{"./handlers.js":"js/handlers.js","./utils.js":"js/utils.js","./clock.js":"js/clock.js","../img/triangle.svg":"img/triangle.svg"}],"js/index.js":[function(require,module,exports) {
+},{"./handlers.js":"js/handlers.js","./utils.js":"js/utils.js","./clock.js":"js/clock.js","../img/triangle.svg":"img/triangle.svg","./dragndrop.js":"js/dragndrop.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _data = require("./data.js");
@@ -635,7 +713,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5879" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "12094" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

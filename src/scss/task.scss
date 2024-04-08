@@ -46,7 +46,7 @@
     padding: 10px;
     flex-grow: 1;
     overflow-y: auto;
-    max-height: 68vh;
+    max-height: 62vh;
 
     @media (max-width: 320px) {
         overflow-y: hidden;
@@ -60,6 +60,8 @@
     padding: 10px;
     margin-bottom: 10px;
     @include shadow;
+    cursor: move;
+    user-select: none;
 
     @media (max-width: 320px) {
         width: 290px;
@@ -153,6 +155,7 @@
 
 .task-color-done {
     background-color: $_blue;
+    cursor: default;
 
     .task-footer-btn:hover {
         background-color: $_blue-hover;
@@ -165,4 +168,23 @@
 
 .task-card-zero {
     text-align: center;
+    cursor: default;
+}
+
+.card-drop {
+    pointer-events: none;
+    animation-name: opacityAnimation;
+    animation-duration: .8s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    @keyframes opacityAnimation {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: .3;
+        }
+    }
 }

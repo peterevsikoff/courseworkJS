@@ -2,6 +2,7 @@ import { addOrEditTodo, changeStatus, delTodo } from "./handlers.js";
 import { clickBackgroundModal, validText } from "./utils.js";
 import { getTime } from "./clock.js";
 import imgSrc from "../img/triangle.svg";
+import {mouseDown} from "./dragndrop.js";
 
 const createCard = ({id, title, description, user, time, status}, tasks) => {
     const card = document.createElement("div");
@@ -17,6 +18,8 @@ const createCard = ({id, title, description, user, time, status}, tasks) => {
             card.classList.add("task-color-done");
             break;
     }
+
+    card.addEventListener("mousedown", (e) => { mouseDown(e, {id, status}, tasks) } );
     
     const cardHeader = document.createElement("div");
     cardHeader.classList.add("task-card-header");
@@ -36,7 +39,7 @@ const createCard = ({id, title, description, user, time, status}, tasks) => {
     
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = status === "TODO" || status === "DONE" ?  "Delete" : "Complete";
-    deleteBtn.addEventListener("click", () => { (status === "TODO" || status === "DONE") ? delTodo({id, status}, tasks) : changeStatus({id, status}, tasks, "DONE"); });
+    deleteBtn.addEventListener("click", (e) => {e.stopPropagation(); (status === "TODO" || status === "DONE") ? delTodo({id, status}, tasks) : changeStatus({id, status}, tasks, "DONE"); });
 
     cardHeaderActions.append(deleteBtn);
 
