@@ -356,6 +356,7 @@ var mouseDown = exports.mouseDown = function mouseDown(e, item, tasks) {
   };
   var init = function init() {
     document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("touchmove", onMouseMove);
     card.remove();
     eventCard.classList.toggle("card-drop");
   };
@@ -365,7 +366,7 @@ var mouseDown = exports.mouseDown = function mouseDown(e, item, tasks) {
 
     //чтобы найти контейнер-цель для перемещения
     card.hidden = true;
-    var container = document.elementFromPoint(e.clientX, e.clientY);
+    var container = e.type !== "mousemove" ? document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY) : document.elementFromPoint(e.clientX, e.clientY);
     card.hidden = false;
     if (!container) return;
 
@@ -389,9 +390,11 @@ var mouseDown = exports.mouseDown = function mouseDown(e, item, tasks) {
 
   //перемещаем
   document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("touchmove", onMouseMove);
 
   //сняли кнопку, удалили клон и убрали подписку
   card.addEventListener("mouseup", init);
+  card.addEventListener("touchend", init);
 };
 },{"./handlers.js":"js/handlers.js"}],"js/dom.js":[function(require,module,exports) {
 "use strict";
@@ -427,6 +430,12 @@ var createCard = function createCard(_ref, tasks) {
       break;
   }
   card.addEventListener("mousedown", function (e) {
+    (0, _dragndrop.mouseDown)(e, {
+      id: id,
+      status: status
+    }, tasks);
+  });
+  card.addEventListener("touchstart", function (e) {
     (0, _dragndrop.mouseDown)(e, {
       id: id,
       status: status
@@ -713,7 +722,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "12094" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1727" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

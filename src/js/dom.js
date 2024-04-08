@@ -20,6 +20,7 @@ const createCard = ({id, title, description, user, time, status}, tasks) => {
     }
 
     card.addEventListener("mousedown", (e) => { mouseDown(e, {id, status}, tasks) } );
+    card.addEventListener("touchstart", (e) => { mouseDown(e, {id, status}, tasks) } );
     
     const cardHeader = document.createElement("div");
     cardHeader.classList.add("task-card-header");

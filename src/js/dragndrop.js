@@ -28,6 +28,7 @@ const mouseDown = (e, item, tasks) => {
 
     const init = () => {
         document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("touchmove", onMouseMove);
         card.remove();
         eventCard.classList.toggle("card-drop");
     }
@@ -39,7 +40,7 @@ const mouseDown = (e, item, tasks) => {
 
         //чтобы найти контейнер-цель для перемещения
         card.hidden = true;
-        let container = document.elementFromPoint(e.clientX, e.clientY);
+        let container = e.type !== "mousemove" ? document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY) : document.elementFromPoint(e.clientX, e.clientY);
         card.hidden = false;
         if (!container) return;
 
@@ -63,9 +64,11 @@ const mouseDown = (e, item, tasks) => {
 
     //перемещаем
     document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("touchmove", onMouseMove);
 
     //сняли кнопку, удалили клон и убрали подписку
     card.addEventListener("mouseup", init);
+    card.addEventListener("touchend", init);
 }
 
 export {
