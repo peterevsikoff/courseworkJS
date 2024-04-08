@@ -1,7 +1,12 @@
-const getUsers = () => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(json => console.log(json))
+// const getUsers = () => {
+//     fetch('https://jsonplaceholder.typicode.com/users')
+//     .then(response => response.json())
+//     .then(json => console.log(json))
+// }
+
+async function getUsers() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    return await response.json();
 }
 
 const tasks = [
@@ -9,7 +14,7 @@ const tasks = [
         id: "1",
         title: "Фильм",
         description: "Посмотреть новый фильм Н.Михалкова",
-        user: "Иванов И.И.",
+        user: "Ervin Howell",
         time: "18:23",
         status: "TODO"
     },
@@ -17,7 +22,7 @@ const tasks = [
         id: "2",
         title: "Диван",
         description: "Полежать на диване смотря в потолок",
-        user: "Иванов И.И.",
+        user: "Clementine Bauch",
         time: "21:00",
         status: "TODO"
     },
@@ -25,7 +30,7 @@ const tasks = [
         id: "3",
         title: "Магазин",
         description: "Сходить в магазин за продуктами",
-        user: "Иванов И.И.",
+        user: "Patricia Lebsack",
         time: "22:00",
         status: "PROGRESS"
     },
@@ -33,7 +38,7 @@ const tasks = [
         id: "4",
         title: "Читать",
         description: "Прочитать следующую главу книги \"Война и мир\"",
-        user: "Иванов И.И.",
+        user: "Patricia Lebsack",
         time: "16:00",
         status: "DONE"
     }

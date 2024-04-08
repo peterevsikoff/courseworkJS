@@ -29,15 +29,21 @@ body.modal-show {
     @include shadow;
     transition: .5s;
 
+    @media (max-width: 660px) {
+        width: 420px;
+    }
+
     @media (max-width: 460px) {
-        width: 320px;
+        width: 330px;
+    }
+
+    @media (max-width: 400px) {
+        width: 310px;
     }
 
     @media (max-width: 320px) {
         width: 280px;
     }
-
-    
 
     input {
         margin-bottom: 16px;
@@ -87,6 +93,15 @@ body.modal-show {
     .modal-window-select {
         margin-right: 6px;
         flex-grow: 1;
+        max-width: 51%;
+
+        @media (max-width: 660px) {
+            max-width: 46%;
+        }
+
+        @media (max-width: 320px) {
+            max-width: 49%;
+        }
     }
 
     .modal-window-footer {

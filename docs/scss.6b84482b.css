@@ -69,7 +69,7 @@
   flex-wrap: wrap;
   margin: 0 -15px;
 }
-@media (max-width: 654px) {
+@media (max-width: 1058px) {
   .task-wrap {
     justify-content: center;
   }
@@ -83,7 +83,12 @@
   flex-direction: column;
   margin: 0 15px 15px 0;
 }
-@media (max-width: 320px) {
+@media (max-width: 1170px) {
+  .task-todo {
+    margin: 0 15px 15px 15px;
+  }
+}
+@media (max-width: 360px) {
   .task-todo {
     margin: 0 0 15px 0;
   }
@@ -91,12 +96,23 @@
 .task-todo:last-child {
   margin-right: 0;
 }
+@media (max-width: 1170px) {
+  .task-todo:last-child {
+    margin-right: 15px;
+  }
+}
+@media (max-width: 540px) {
+  .task-todo:last-child {
+    margin-right: 0;
+  }
+}
 
 .task-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  border-bottom: 1px solid rgba(102, 107, 110, 0.5);
 }
 
 .task-header-title, .task-header-count {
@@ -128,7 +144,17 @@
   cursor: move;
   user-select: none;
 }
-@media (max-width: 320px) {
+@media (max-width: 1058px) {
+  .task-card {
+    width: 480px;
+  }
+}
+@media (max-width: 540px) {
+  .task-card {
+    width: 300px;
+  }
+}
+@media (max-width: 360px) {
   .task-card {
     width: 290px;
   }
@@ -216,6 +242,9 @@
   font-size: 24px;
 }
 
+.task-footer {
+  border-top: 1px solid rgba(102, 107, 110, 0.5);
+}
 .task-footer button {
   width: 100%;
   padding: 10px 0;
@@ -307,9 +336,19 @@ body.modal-show {
   box-shadow: 1px 1px 2px rgba(102, 107, 110, 0.5), -1px 1px 2px rgba(102, 107, 110, 0.5);
   transition: 0.5s;
 }
+@media (max-width: 660px) {
+  .modal-window {
+    width: 420px;
+  }
+}
 @media (max-width: 460px) {
   .modal-window {
-    width: 320px;
+    width: 330px;
+  }
+}
+@media (max-width: 400px) {
+  .modal-window {
+    width: 310px;
   }
 }
 @media (max-width: 320px) {
@@ -364,6 +403,17 @@ body.modal-show {
 .modal-window .modal-window-select {
   margin-right: 6px;
   flex-grow: 1;
+  max-width: 51%;
+}
+@media (max-width: 660px) {
+  .modal-window .modal-window-select {
+    max-width: 46%;
+  }
+}
+@media (max-width: 320px) {
+  .modal-window .modal-window-select {
+    max-width: 49%;
+  }
 }
 .modal-window .modal-window-footer {
   display: flex;

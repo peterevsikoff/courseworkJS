@@ -1,4 +1,4 @@
-import { setData } from "./data.js";
+import { setData, getUsers } from "./data.js";
 import { clearContainer, createModalTask, createModalConfirm, createModalAlert } from "./dom.js";
 import { removeModal } from "./utils.js";
 import { renderContainer } from "./dom.js";
@@ -7,7 +7,18 @@ import { renderContainer } from "./dom.js";
 const addOrEditTodo = (item, data) => {
     const body = document.body;
     body.classList.add("modal-show");
-    body.append(createModalTask(removeModal, save, item ?? {}, ["Иванов И.И.", "Петров П.П.", "Сидоров С.С."], data));
+    //body.append(createModalTask(removeModal, save, item ?? {}, ["Иванов И.И.", "Петров П.П.", "Сидоров С.С."], data));
+
+    getUsers().then(users => {
+        body.append(createModalTask(removeModal, save, item ?? {}, users.map(x => x.name), data));
+    });
+//чтобы подождать users обернуть в анонимную async и немедленно вызываемую функцию
+// (
+//     async () => {
+//         const users = await getUsers();
+//         console.log(users);
+//     }
+// )();
 }
 //сохранить изменения в задачи
 const save = (item, data) => {

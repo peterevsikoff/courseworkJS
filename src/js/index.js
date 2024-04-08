@@ -1,9 +1,7 @@
-import { getUsers, getData } from "./data.js";
+import { getData } from "./data.js";
 import { getTime } from "./clock.js";
 import { renderContainer } from "./dom.js";
 import { addOrEditTodo, deleteAll } from "./handlers.js";
-
-//getUsers();
 
 const clock = document.querySelector(".header-clock");
 clock.textContent = getTime();
