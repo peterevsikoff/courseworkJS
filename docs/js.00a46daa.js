@@ -399,8 +399,10 @@ var mouseDown = exports.mouseDown = function mouseDown(e, item, tasks) {
   var init = function init() {
     document.removeEventListener("mousemove", onMouseMove);
     document.removeEventListener("touchmove", onMouseMove);
+    document.removeEventListener("touchmove", touchMove);
     card.remove();
     eventCard.classList.toggle("card-drop");
+    document.body.style.overflow = "auto";
   };
   moveAt(e.pageX, e.pageY);
   var onMouseMove = function onMouseMove(e) {
@@ -429,14 +431,19 @@ var mouseDown = exports.mouseDown = function mouseDown(e, item, tasks) {
       init();
     }
   };
+  var touchMove = function touchMove() {
+    document.body.style.overflow = "hidden";
+  };
 
   //перемещаем
   document.addEventListener("mousemove", onMouseMove);
   document.addEventListener("touchmove", onMouseMove);
+  document.addEventListener("touchmove", touchMove);
 
   //сняли кнопку, удалили клон и убрали подписку
   card.addEventListener("mouseup", init);
-  card.addEventListener("touchend", init);
+  eventCard.addEventListener("touchend", init);
+  eventCard.addEventListener("touchcancel", init);
 };
 },{"./handlers.js":"js/handlers.js"}],"js/dom.js":[function(require,module,exports) {
 "use strict";
@@ -762,7 +769,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4782" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5529" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

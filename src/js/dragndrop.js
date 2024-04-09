@@ -29,8 +29,10 @@ const mouseDown = (e, item, tasks) => {
     const init = () => {
         document.removeEventListener("mousemove", onMouseMove);
         document.removeEventListener("touchmove", onMouseMove);
+        document.removeEventListener("touchmove", touchMove);
         card.remove();
         eventCard.classList.toggle("card-drop");
+        document.body.style.overflow = "auto";
     }
 
     moveAt(e.pageX, e.pageY);
@@ -62,13 +64,19 @@ const mouseDown = (e, item, tasks) => {
         }
     }
 
+    const touchMove = () => {
+        document.body.style.overflow = "hidden";
+    }
+
     //перемещаем
     document.addEventListener("mousemove", onMouseMove);
     document.addEventListener("touchmove", onMouseMove);
+    document.addEventListener("touchmove", touchMove);
 
     //сняли кнопку, удалили клон и убрали подписку
     card.addEventListener("mouseup", init);
-    card.addEventListener("touchend", init);
+    eventCard.addEventListener("touchend", init);
+    eventCard.addEventListener("touchcancel", init);
 }
 
 export {
